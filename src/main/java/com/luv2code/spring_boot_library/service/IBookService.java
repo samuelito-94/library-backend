@@ -1,0 +1,8 @@
+package com.luv2code.spring_boot_library.service;
+
+import com.luv2code.spring_boot_library.entity.Book;
+
+public interface IBookService {
+
+    Book checkoutBook(String userEmail, Long bookId) throws Exception;
+}
