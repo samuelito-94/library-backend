@@ -23,6 +23,7 @@ public class BookService implements IBookService {
         this.checkoutRepository = checkoutRepository;
     }
 
+    @Override
     public Book checkoutBook(String userEmail, Long bookId) throws Exception {
         Optional<Book> bookOptional = bookRepository.findById(bookId);
         Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
@@ -46,5 +47,11 @@ public class BookService implements IBookService {
         checkoutRepository.save(checkout);
 
         return book;
+    }
+
+    @Override
+    public boolean isBookCheckedOutByUser(String userEmail, Long bookId) {
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+        return  validateCheckout != null;
     }
 }
